@@ -114,7 +114,7 @@ void Engine::readFromFile(std::string filepath) {
         cout << "Error opening file" << endl;
     }
     ins >> noskipws;
-    int xCoord = 0, yCoord = height;
+    int xCoord = 0, yCoord = height-SIDE_LENGTH;
     char letter;
     bool draw;
     color c;
