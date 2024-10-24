@@ -120,7 +120,7 @@ class Shape {
 
 protected:
         /// @brief Shader used to draw all abstract shapes.
-        /// @note TODO This will need to be a pointer for custom shaders.
+        /// @note This will need to be a pointer for custom shaders.
         Shader & shader;
 
         /// @brief The position of the shape

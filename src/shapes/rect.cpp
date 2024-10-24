@@ -47,10 +47,7 @@ float Rect::getTop() const         { return pos.y + (size.y / 2); }
 float Rect::getBottom() const      { return pos.y - (size.y / 2); }
 
 bool Rect::isOverlapping(const Rect &r1, const Rect &r2) {
-    // STUDENT TODO: Implement this function
-    // hint: Google Axis Aligned Bounding Box (AABB)
-    return (r1.getLeft() < r2.getRight() && r1.getRight() > r2.getLeft() &&
-            r1.getTop() > r2.getBottom() && r1.getBottom() < r2.getTop());
+    return false; // Placeholder for compilation
 }
 
 bool Rect::isOverlapping(const Rect &other) const {
