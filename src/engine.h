@@ -22,7 +22,7 @@ class Engine {
         GLFWwindow* window{};
 
         /// @brief The width and height of the window.
-        const unsigned int width = 800, height = 600; // Window dimensions
+        const unsigned int width = 640, height = 640; // Window dimensions
 
         /// @brief Keyboard state (True if pressed, false if not pressed).
         /// @details Index this array with GLFW_KEY_{key} to get the state of a key.
@@ -34,6 +34,7 @@ class Engine {
 
         // Shapes
         vector<unique_ptr<Shape>> squares;
+        color pixelsAs2dArray[128][128];
 
         // Shaders
         Shader shapeShader;
@@ -42,7 +43,7 @@ class Engine {
         double MouseX, MouseY;
         bool mousePressedLastFrame = false;
 
-        const int SIDE_LENGTH = 20;
+        const int SIDE_LENGTH = 5;
 
         /// @note Call glCheckError() after every OpenGL call to check for errors.
         GLenum glCheckError_(const char *file, int line);
@@ -64,6 +65,12 @@ class Engine {
         /// @brief Loads shaders from files and stores them in the shaderManager.
         /// @details Renderers are initialized here.
         void initShaders();
+
+        void drawTriangle(vec2 p1, vec2 p2, vec2 p3);
+        void fillTriangle(vec2 p1, vec2 p2, vec2 p3);
+        void colorPixel(int x, int y, color c);
+        void drawLine(vec2 p1, vec2 p2);
+        void rasterize();
 
         /// @brief Initializes the shapes to be rendered.
         void initShapes();
