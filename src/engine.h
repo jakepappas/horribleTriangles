@@ -9,6 +9,7 @@
 #include "shader/shaderManager.h"
 #include "shapes/rect.h"
 #include "shapes/shape.h"
+#include "shapes/Triangle.h"
 
 using std::vector, std::unique_ptr, std::make_unique, glm::ortho, glm::mat4, glm::vec3, glm::vec4;
 
@@ -45,6 +46,34 @@ class Engine {
 
         const int SIDE_LENGTH = 5;
 
+        const int screenWidth = 128;
+        const int screenHeight = 128;
+        const float far = 3.0f;
+        const float near = 2.0f;
+        const float fov = 90.0f;
+        const float aspect = 1.0f;
+        const float f = 1.0f / tan((fov * M_PI / 180.0f) / 2.0f);
+
+        const mat4 perspective = mat4(
+            f/aspect, 0, 0, 0,
+            0, f, 0, 0,
+            0, 0, (far+near)/(near-far), (2*far*near)/(near-far),
+            0, 0, -1, 0
+            );
+
+        float degreeRotation = 0;
+        float degree = degreeRotation * M_PI / 180.0f;
+        mat4 rotation = mat4(
+                cos(degree), 0, sin(degree), 0,
+                0, 1, 0, 0,
+                -sin(degree), 0, cos(degree), 0,
+                0, 0, 0, 1
+        );
+
+        vector<unique_ptr<Triangle>> triangles;
+
+
+
         /// @note Call glCheckError() after every OpenGL call to check for errors.
         GLenum glCheckError_(const char *file, int line);
         /// @brief Macro for glCheckError_ function. Used for debugging.
@@ -66,6 +95,7 @@ class Engine {
         /// @details Renderers are initialized here.
         void initShaders();
 
+        void applyTransformations();
         void drawTriangle(vec2 p1, vec2 p2, vec2 p3);
         void fillTriangle(vec2 p1, vec2 p2, vec2 p3);
         void colorPixel(int x, int y, color c);

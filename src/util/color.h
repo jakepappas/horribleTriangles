@@ -2,6 +2,7 @@
 #define GRAPHICS_COLOR_H
 
 #include <glm/glm.hpp>
+#include <ostream>
 using std::ostream, glm::vec4;
 
 // Union treats all members as if they were at the same address, so changing one changes the others.
