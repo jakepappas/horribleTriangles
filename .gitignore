@@ -7,3 +7,4 @@ src/Archive.zip
 .DS_Store
 old/
 .vscode/
+.cache/clangd/index
