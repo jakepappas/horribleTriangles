@@ -19,20 +19,20 @@ Triangle::Triangle(vec4 p1, vec4 p2, vec4 p3, mat4 projection, mat4 rotation, in
 
 }
 
-vec2 Triangle::ApplyTransformations(vec4 p){
+vec2 Triangle::ApplyTransformations(vec4 p) const{
     vec4 projected = projection * rotation * p;
     vec3 ndc = vec3(projected) / projected.w;
     int x = (ndc.x + 1.0f) * 0.5f * screenWidth;
     int y = (1.0f - (ndc.y + 1.0f) * 0.5f) * screenHeight;
-    return vec2(x,y);
+    return {x,y};
 }
 
 void Triangle::Render() {
-    drawLines(p2d1,p2d2,p2d3);
+    drawLines();
 }
 
 void Triangle::ColorPixel(int x, int y){
-    drawHere.push_back(vec2(x,y));
+    drawHere.emplace_back(x,y);
 }
 
 void Triangle::drawLine(vec2 p1, vec2 p2) {
@@ -80,10 +80,10 @@ void Triangle::drawLine(vec2 p1, vec2 p2) {
     }
 }
 
-void Triangle::drawLines(vec2 p1, vec2 p2, vec2 p3) {
-    drawLine(p1,p2);
-    drawLine(p1,p3);
-    drawLine(p2,p3);
+void Triangle::drawLines() {
+    drawLine(p2d1,p2d2);
+    drawLine(p2d1,p2d3);
+    drawLine(p2d2,p2d3);
 }
 
 

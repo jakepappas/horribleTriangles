@@ -122,7 +122,7 @@ void Engine::render() {
             pixelsAs2dArray[x][y] = color(1,1,1);
             triangle->drawHere.pop_back();
         }
-        triangle->drawHere.clear();//just in case
+
     }
 
     int xCoord = 0, yCoord = height-SIDE_LENGTH;

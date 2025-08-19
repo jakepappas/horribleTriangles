@@ -19,6 +19,7 @@ Rect::Rect(Rect const& other) : Shape(other) {
 Rect::~Rect() {
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
+    glDeleteBuffers(1, &EBO);
 }
 
 void Rect::draw() const {

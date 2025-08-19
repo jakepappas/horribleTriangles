@@ -11,29 +11,29 @@
 using std::vector, glm::mat4, glm::vec3, glm::vec2, glm::vec4;
 class Triangle {
 public:
-    vec4 p1;
-    vec4 p2;
-    vec4 p3;
-    mat4 projection;
-    mat4 rotation;
+    vec4 p1{};
+    vec4 p2{};
+    vec4 p3{};
+    mat4 projection{};
+    mat4 rotation{};
     int screenWidth;
     int screenHeight;
 
-    vec2 p2d1;
-    vec2 p2d2;
-    vec2 p2d3;
+    vec2 p2d1{};
+    vec2 p2d2{};
+    vec2 p2d3{};
 
     vector<vec2> drawHere;
 
     Triangle(vec4 p1, vec4 p2, vec4 p3, mat4 projection, mat4 rotation, int screenWidth, int screenHeight);
     ~Triangle() = default;
 
-    vec2 ApplyTransformations(vec4 p);
+    vec2 ApplyTransformations(vec4 p) const;
     void Render();
     void ColorPixel(int x, int y);
 
     void drawLine(vec2 p1, vec2 p2);
-    void drawLines(vec2 p1, vec2 p2, vec2 p3);
+    void drawLines();
 
 
 };
